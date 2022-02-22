@@ -1,38 +1,45 @@
+import java.util.ArrayList;
 
 public class Homework {
+    public static class Neighbors {
+        String princ;
+        ArrayList<String> nbh= new ArrayList<>();
+    }
     public static void main (String [] args ) {
-        if(args.length<3) {
-        System.out.println("Eroare la argumente!");
-        System.exit(-1);
+        if (args.length < 3) {
+            System.out.println("Eroare la argumente!");
+            System.exit(-1);
         }
 
-        int n=Integer.parseInt(args[0]); //array size
-        int p=Integer.parseInt(args[1]); // word size
-        int m=args.length-2; //number of letters
-        char[] letters= new char[m];
-        for(int i=2; i< args.length; i++)
-            letters[i-2]=args[i].toCharArray()[0];
+        int n = Integer.parseInt(args[0]); //array size
+        int p = Integer.parseInt(args[1]); // word size
+        int m = args.length - 2; //number of letters
+        char[] letters = new char[m];
+        for (int i = 2; i < args.length; i++)
+            letters[i - 2] = args[i].toCharArray()[0];
         //System.out.println(letters);
 
-        String[] words  = new String[n];
-        for(int i=0; i<n; i++){
+        String[] words = new String[n];
+        for (int i = 0; i < n; i++) {
             StringBuilder sb = new StringBuilder();
-            int ct=0;
-            while(ct < p){
-                int pos= (int) (Math.random() * m +1)  - 1;
+            int ct = 0;
+            while (ct < p) {
+                int pos = (int) (Math.random() * m + 1) - 1;
                 //System.out.println(pos);
                 sb.append(letters[pos]);
                 ct++;
             }
-            words[i]=sb.toString();
+            words[i] = sb.toString();
         }
-        for(int i=0;i<n;i++) {
+        System.out.println("Cuvintele sunt:");
+        for (int i = 0; i < n; i++) {
             System.out.print(words[i] + " ");
         }
-        boolean[][] matrix= new boolean [n][n];
-        for(int i=0;i<n;i++)
-            for(int j=0;j<n;j++){
-                if(i!=j) {
+        System.out.println("\nPerechile de vecini sunt:");
+        boolean[][] matrix = new boolean[n][n];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                if (i != j) {
                     char[] cuv1 = words[i].toCharArray();
                     char[] cuv2 = words[j].toCharArray();
                     boolean ok = false;
@@ -42,16 +49,44 @@ public class Homework {
                                 ok = true;
                                 break;
                             }
-                    if (ok ) {
+                    if (ok) {
                         matrix[i][j] = true;
                     }
                 }
 
             }
-        for(int i=0;i<n;i++) {
+        /*  System.out.println("\n Matricea este:");
+            for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++)
-                System.out.print(matrix[i][j]+" ");
-        System.out.print("\n");
+                System.out.print(matrix[i][j] + " ");
+            System.out.print("\n");
+        }*/
+
+        ArrayList<Neighbors> NBH = new ArrayList<>();
+
+        for(int i=0;i<n;i++) {
+            Neighbors temp= new Neighbors();
+            temp.princ=words[i];
+            for (int j = 0; j < n; j++)
+                if (matrix[i][j]) {
+                    temp.nbh.add(words[j]);
+
+                }
+            NBH.add(temp);
         }
+        if(n<1000) {
+            for (int i = 0; i < NBH.size(); i++) {
+                Neighbors temp1; //= new Neighbors();
+                temp1 = NBH.get(i);
+                System.out.println(temp1.princ + " " + temp1.nbh);
+            }
+        }
+        else {
+            System.out.println("\n");
+            long t1 = System.currentTimeMillis();
+            t1=t1*1000000;
+            System.out.println(t1);
+        }
+
     }
 }
