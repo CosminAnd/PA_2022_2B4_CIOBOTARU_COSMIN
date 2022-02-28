@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
 public class Homework {
-    public static class Neighbors {
+    static class Neighbors {
         String princ;
-        ArrayList<String> nbh= new ArrayList<>();
+        ArrayList<String> nbh = new ArrayList<>();
     }
-    public static void main (String [] args ) {
+
+    public static void main(String[] args) {
         if (args.length < 3) {
             System.out.println("Eroare la argumente!");
             System.exit(-1);
@@ -64,9 +65,9 @@ public class Homework {
 
         ArrayList<Neighbors> NBH = new ArrayList<>();
 
-        for(int i=0;i<n;i++) {
-            Neighbors temp= new Neighbors();
-            temp.princ=words[i];
+        for (int i = 0; i < n; i++) {
+            Neighbors temp = new Neighbors();
+            temp.princ = words[i];
             for (int j = 0; j < n; j++)
                 if (matrix[i][j]) {
                     temp.nbh.add(words[j]);
@@ -74,17 +75,16 @@ public class Homework {
                 }
             NBH.add(temp);
         }
-        if(n<1000) {
-            for (int i = 0; i < NBH.size(); i++) {
+        if (n < 1000) {
+            for (Neighbors neighbors : NBH) {
                 Neighbors temp1; //= new Neighbors();
-                temp1 = NBH.get(i);
+                temp1 = neighbors;
                 System.out.println(temp1.princ + " " + temp1.nbh);
             }
-        }
-        else {
+        } else {
             System.out.println("\n");
             long t1 = System.currentTimeMillis();
-            t1=t1*1000000;
+            t1 = t1 * 1000000;
             System.out.println(t1);
         }
 

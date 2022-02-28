@@ -1,0 +1,18 @@
+
+h
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(Çµí‘
+S	java:S106
+"9Replace this use of System.out or System.err by a logger.(öì¾¦ùÿÿÿÿ
+P	java:S125"<This block of commented-out lines of code should be removed.(Åˆ÷*
+D
+java:S2140")Use "java.util.Random.nextInt()" instead.(¤¦ùÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(Áœþô
+S	java:S106""9Replace this use of System.out or System.err by a logger.(±è¯­ûÿÿÿÿ
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(ÄºÒ—
+S	java:S106&"9Replace this use of System.out or System.err by a logger.(Ôâôðùÿÿÿÿ
+V	java:S125:"<This block of commented-out lines of code should be removed.(üÙÂÝûÿÿÿÿ
+V	java:S125O"<This block of commented-out lines of code should be removed.(©œý¢üÿÿÿÿ
+N	java:S106Q"9Replace this use of System.out or System.err by a logger.(Â™àÞ
+S	java:S106U"9Replace this use of System.out or System.err by a logger.(ƒÇãˆúÿÿÿÿ
+N	java:S106X"9Replace this use of System.out or System.err by a logger.(ÔŒ±‚
+k	java:S117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚÅ»ùÿÿÿÿ
