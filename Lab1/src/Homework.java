@@ -8,15 +8,15 @@ public class Homework {
 
     public static void main(String[] args) {
         if (args.length < 3) {
-            System.out.println("Eroare la argumente!");
+            System.out.println("Eroare la argumente! Prea multe argumente.");
             System.exit(-1);
         }
         if(!args[0].matches("[0-9]+")) {
-            System.out.println("Eroare la argumente!");
+            System.out.println("Eroare la argumente! Tip necorespunzator.");
             System.exit(-2);
         }
         if(!args[1].matches("[0-9]+")) {
-            System.out.println("Eroare la argumente!");
+            System.out.println("Eroare la argumente! Tip necorespunzator.");
             System.exit(-3);
         }
 
