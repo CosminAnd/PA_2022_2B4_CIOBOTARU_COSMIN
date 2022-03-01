@@ -11,6 +11,14 @@ public class Homework {
             System.out.println("Eroare la argumente!");
             System.exit(-1);
         }
+        if(!args[0].matches("[0-9]+")) {
+            System.out.println("Eroare la argumente!");
+            System.exit(-2);
+        }
+        if(!args[1].matches("[0-9]+")) {
+            System.out.println("Eroare la argumente!");
+            System.exit(-3);
+        }
 
         int n = Integer.parseInt(args[0]); //array size
         int p = Integer.parseInt(args[1]); // word size
