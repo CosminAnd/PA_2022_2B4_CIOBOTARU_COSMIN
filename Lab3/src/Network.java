@@ -1,8 +1,6 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
-
-import static java.util.Collection.*;
+import java.util.List;
 
 
 public class Network {
@@ -33,10 +31,19 @@ public class Network {
         return nodes.get(index);
     }
 
+    public void sortAllNodes() {
+        Collections.sort(nodes);
+    }
+
     public void print() {
         for (Node node : nodes)
             System.out.println("Nume: " + node.getName() + "; Adresa: " + node.getAddress() + "; Capacitate: " + node.getStorageCapacity());
+
     }
 
+    @Override
+    public String toString() {
+        return "Network: " + "nodes=" + nodes ;
+    }
 
 }

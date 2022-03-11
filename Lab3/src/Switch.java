@@ -18,4 +18,5 @@ public class Switch extends Node{
     public String getAddress() {
         return null;
     }
+
 }

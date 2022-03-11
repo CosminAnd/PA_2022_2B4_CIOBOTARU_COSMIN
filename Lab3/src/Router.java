@@ -44,6 +44,6 @@ public class Router extends Node implements Identifiable {
 
     @Override
     public String toString() {
-        return address;
+        return "Router: address= " + address;
     }
 }

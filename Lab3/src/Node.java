@@ -22,9 +22,14 @@ public abstract class Node implements Comparable<Node> { ///interfata pentru met
 
     public abstract String getAddress();
 
+    public void setCost(Node key, int value) {
+        cost.put(key, value);
+    }
+
+
     @Override
     public String toString() {
-        return name;
+        return "Node: name= "+name;
     }
 
     @Override
