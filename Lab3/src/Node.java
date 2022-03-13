@@ -1,10 +1,10 @@
-import javax.xml.stream.Location;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public abstract class Node implements Comparable<Node> { ///interfata pentru metode de comparare
     private String name;
-    private Map<Node, Integer> cost = new HashMap<>();
+    private final Map<Node, Integer> cost = new HashMap<>();
 
     public void setName(String newName) {
         this.name = newName;
@@ -26,15 +26,30 @@ public abstract class Node implements Comparable<Node> { ///interfata pentru met
         cost.put(key, value);
     }
 
+    public void printNodeMap() {
+        for (Map.Entry m : cost.entrySet()) {
+            System.out.println(m.getKey() + "; cost: " + m.getValue());
+        }
+    }
+
+    public void addToMatrix(int i, int j, int[][] matrix, Node node) {
+        for (Map.Entry m : cost.entrySet()) {
+            if (m.getKey().toString().compareTo(node.toString()) == 0) {
+                matrix[i][j] = matrix[j][i] =(int) m.getValue();
+            }
+        }
+    }
+
 
     @Override
     public String toString() {
-        return "Node: name= "+name;
+        return name;
     }
 
     @Override
     public int compareTo(Node toCompare) {
         return this.name.compareTo(toCompare.getName());
-
     }
+
+
 }

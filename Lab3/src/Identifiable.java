@@ -1,3 +1,3 @@
 public interface Identifiable {
-    public String getAddress();
+    String getAddress();
 }

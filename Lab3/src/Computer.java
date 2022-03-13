@@ -45,6 +45,6 @@ public class Computer extends Node implements Identifiable, Storage {
 
     @Override
     public String toString() {
-        return "Computer: address= "+ address;
+        return this.getName() ;
     }
 }
