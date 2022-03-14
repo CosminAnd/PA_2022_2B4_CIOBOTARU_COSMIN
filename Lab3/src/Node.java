@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public abstract class Node implements Comparable<Node> { ///interfata pentru metode de comparare
@@ -34,8 +35,8 @@ public abstract class Node implements Comparable<Node> { ///interfata pentru met
 
     public void addToMatrix(int i, int j, int[][] matrix, Node node) {
         for (Map.Entry m : cost.entrySet()) {
-            if (m.getKey().toString().compareTo(node.toString()) == 0) {
-                matrix[i][j] = matrix[j][i] =(int) m.getValue();
+            if (node.equals(m.getKey())) {
+                matrix[i][j] = matrix[j][i] = (int) m.getValue();
             }
         }
     }
@@ -51,5 +52,12 @@ public abstract class Node implements Comparable<Node> { ///interfata pentru met
         return this.name.compareTo(toCompare.getName());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if(!(o instanceof Node)) return false;
+        Node node = (Node) o;
+        return Objects.equals(name, node.name);
+    }
 
 }
