@@ -53,7 +53,7 @@ public class Network {
 
     public void buildNodesIdentifiable() {
         for (Node n : nodes) {
-            if (n.getAddress() != null) {
+            if (n instanceof Identifiable) {
                 identifiable.add(n);
             }
         }

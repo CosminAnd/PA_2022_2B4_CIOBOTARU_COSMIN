@@ -41,7 +41,6 @@ public abstract class Node implements Comparable<Node> { ///interfata pentru met
         }
     }
 
-
     @Override
     public String toString() {
         return name;
