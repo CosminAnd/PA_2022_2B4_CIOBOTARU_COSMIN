@@ -4,13 +4,15 @@ public class Street implements Comparable<Street> {
     private Intersection firstIntersection;
     private Intersection secondIntersection;
 
-    public Street(String name, int lenght) {
+    public Street(String name, int lenght, Intersection firstIntersection, Intersection secondIntersection) {
         this.name = name;
         if (lenght <= 0) {
             System.out.println("Eroare, lungime negativa");
         } else {
             this.length = lenght;
         }
+        this.firstIntersection = firstIntersection;
+        this.secondIntersection = secondIntersection;
     }
 
     public String getName() {
