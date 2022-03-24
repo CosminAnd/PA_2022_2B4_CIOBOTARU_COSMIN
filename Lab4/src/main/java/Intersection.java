@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Intersection {
     private String name;
+    private List<Street> streets = new ArrayList<>();
 
     public Intersection(String name) {
         this.name = name;
@@ -15,14 +18,21 @@ public class Intersection {
         return name;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public void setStreet(Street street) {
+        streets.add(street);
+    }
+
+    public int getNumberOfStreets() {
+        return streets.size();
+    }
+
+    public List<Street> getStreets() {
+        return streets;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
+    public String toString() {
+        return name;
     }
 
     @Override
