@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "className")
+@JsonSubTypes({@JsonSubTypes.Type(value = Book.class, name = "Book"), @JsonSubTypes.Type(value = Article.class, name = "Article")})
 public abstract class Item implements Serializable {
     private String id;
     private String title;
@@ -15,6 +17,7 @@ public abstract class Item implements Serializable {
     private Map<String, Object> tags = new HashMap<>();
     private int year;
     private String author;
+
 
     public Item() {
     }
@@ -87,4 +90,5 @@ public abstract class Item implements Serializable {
     public void addTag(String key, Object obj) {
         tags.put(key, obj);
     }
+
 }

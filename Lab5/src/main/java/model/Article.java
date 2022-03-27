@@ -1,8 +1,10 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import java.util.Map;
 
-
+@JsonTypeName("Article")
 public class Article extends Item {
     private int number;
 

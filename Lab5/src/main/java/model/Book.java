@@ -1,8 +1,11 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import java.util.Map;
 
-
+@JsonTypeName("Book")
 public class Book extends Item {
     private String description;
 
