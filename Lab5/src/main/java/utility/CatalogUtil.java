@@ -28,16 +28,6 @@ public class CatalogUtil {
         return catalog;
     }
 
-    public static void view(Item item) throws IOException {
-        Desktop desktop = Desktop.getDesktop();
-        String location = item.getLocation();
-        if (location.contains("http")) {
-            desktop.browse(URI.create(location));
-        } else {
-            desktop.open(new File(location));
-        }
-    }
-
     public static void list(String path) throws Exception {
         Catalog catalog = (Catalog) CatalogUtil.load(path);
         for (int i = 0; i < catalog.getItemList().size(); i++) {
