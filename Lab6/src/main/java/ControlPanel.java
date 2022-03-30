@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemListener;
 
 public class ControlPanel extends JPanel {
 
@@ -7,9 +8,6 @@ public class ControlPanel extends JPanel {
     private JButton saveButton;
     private JButton exitButton;
 
-    public ControlPanel() {
-        init();
-    }
 
     private void init() {
         setLayout(new FlowLayout());
@@ -19,5 +17,7 @@ public class ControlPanel extends JPanel {
         add(loadButton);
         add(saveButton);
         add(exitButton);
+
     }
+
 }
