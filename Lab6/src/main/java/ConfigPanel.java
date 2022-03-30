@@ -1,34 +1,36 @@
+
+
 import javax.swing.*;
 import java.awt.*;
 
 public class ConfigPanel extends JPanel {
-
+    final MainFrame frame;
     JLabel label;
-    JSpinner spRows;
-    JSpinner spCols;
-    JButton newGameButton;
+    JSpinner rows;
+    JSpinner cols;
+    JButton newGame;
 
-    public ConfigPanel() {
+    public ConfigPanel(MainFrame frame) {
+        this.frame = frame;
         init();
     }
-
     private void init() {
-        setLayout(new FlowLayout()); //layout cu aliniere centrala
+        //create the label and the spinner
         label = new JLabel("Grid size:");
-        spRows = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
-        spCols = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
-        newGameButton = new JButton("Create");
-        add(label);
-        add(spRows);
-        add(spCols);
-        add(newGameButton);
-    }
+        rows = new JSpinner(new SpinnerNumberModel(10, 2, 100, 1));
+        cols = new JSpinner((new SpinnerNumberModel(10,2,100,1)));
+        newGame = new JButton(("New Game"));
 
+        add(label); //JPanel uses FlowLayout by default
+        add(rows);
+        add(cols);
+        add(newGame);
+    }
     public int getRows() {
-        return (int) spRows.getValue();
+        return (int) rows.getValue();
     }
-
     public int getCols() {
-        return (int) spCols.getValue();
+        return (int) cols.getValue();
     }
 }
+
