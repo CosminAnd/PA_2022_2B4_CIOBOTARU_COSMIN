@@ -2,6 +2,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DrawingPanel extends JPanel {
     private final MainFrame frame;
@@ -11,10 +13,12 @@ public class DrawingPanel extends JPanel {
     int cellWidth, cellHeight;
     int padX, padY;
     int stoneSize = 20;
+
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
         init(frame.configPanel.getRows(), frame.configPanel.getCols());
     }
+
     final void init(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
@@ -26,6 +30,7 @@ public class DrawingPanel extends JPanel {
         this.boardHeight = (rows - 1) * cellHeight;
         setPreferredSize(new Dimension(canvasWidth, canvasHeight));
     }
+
     protected void paintComponent(Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
         g.setColor(Color.WHITE);
@@ -34,6 +39,7 @@ public class DrawingPanel extends JPanel {
         //paintSticks(g);
         //paintStones(g);
     }
+
     private void paintGrid(Graphics2D g) {
         g.setColor(Color.DARK_GRAY);
         //horizontal lines
@@ -45,7 +51,7 @@ public class DrawingPanel extends JPanel {
             g.drawLine(x1, y1, x2, y2);
         }
         //vertical lines
-        for(int col = 0; col < cols; col++) {
+        for (int col = 0; col < cols; col++) {
             int x1 = padX + col * cellWidth;
             int y1 = padY;
             int x2 = x1;
@@ -62,4 +68,9 @@ public class DrawingPanel extends JPanel {
             }
         }
     }
+
 }
+
+
+
+
