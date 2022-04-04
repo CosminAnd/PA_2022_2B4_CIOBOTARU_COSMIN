@@ -1,23 +1,26 @@
 
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ControlPanel extends JPanel {
     final MainFrame frame;
     JButton exitBtn = new JButton("Exit");
     JButton loadBtn = new JButton("Load");
     JButton saveBtn = new JButton("Save");
-    JButton captureBtn= new JButton("Capture");
+    JButton captureBtn = new JButton("Capture");
 
     public ControlPanel(MainFrame frame) {
-        this.frame = frame; init();
+        this.frame = frame;
+        init();
     }
+
     private void init() {
         add(exitBtn);
         add(loadBtn);
@@ -26,33 +29,32 @@ public class ControlPanel extends JPanel {
 
         //configure listeners for all buttons
         exitBtn.addActionListener(this::exitGame);
-        loadBtn.addActionListener(this::loadGame);
-        saveBtn.addActionListener(this::saveGame);
         captureBtn.addActionListener(this::captureGame);
+        loadBtn.addActionListener(this::load);
+        saveBtn.addActionListener(this::save);
     }
 
-    private void saveGame(ActionEvent actionEvent) {
+    private void save(ActionEvent e){
 
     }
 
-    private void loadGame(ActionEvent actionEvent) {
-
+    private void load(ActionEvent e){
+        
     }
 
     private void exitGame(ActionEvent e) {
         frame.dispose();
     }
 
-    private void captureGame(ActionEvent event){
-        BufferedImage image = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = image.createGraphics();
-        frame.printAll(g);
-        g.dispose();
+    private void captureGame(ActionEvent event) {
         try {
-            ImageIO.write(image, "png", new File("Capture.png"));
-        } catch (IOException exp) {
-            exp.printStackTrace();
+            BufferedImage image = new Robot().createScreenCapture(new Rectangle(frame.getLocationOnScreen().x, frame.getLocationOnScreen().y, frame.getWidth(), frame.getHeight()));
+            File file = new File("Capture.png");
+            ImageIO.write(image, "png", file);
+        } catch (AWTException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
     }
 }
