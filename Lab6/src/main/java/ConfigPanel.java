@@ -55,5 +55,6 @@ public class ConfigPanel extends JPanel {
     public int getCols() {
         return (int) cols.getValue();
     }
+
 }
 

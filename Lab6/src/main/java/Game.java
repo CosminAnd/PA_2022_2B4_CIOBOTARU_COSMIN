@@ -2,11 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.security.PublicKey;
+import java.io.*;
 import java.util.List;
+import java.util.Scanner;
 
 public class Game {
     final MainFrame mainFrame;
@@ -23,16 +21,8 @@ public class Game {
         this.mainFrame = mainFrame;
         this.stones = mainFrame.canvas.getStones();
         this.canvas = mainFrame.canvas;
-        rows=this.mainFrame.configPanel.getRows();
-        cols= this.mainFrame.configPanel.getCols();
-    }
-
-    public int getTurn() {
-        return turn;
-    }
-
-    public List<Node> getStones(){
-        return stones;
+        rows = this.mainFrame.configPanel.getRows();
+        cols = this.mainFrame.configPanel.getCols();
     }
 
     public void play() {
@@ -98,13 +88,74 @@ public class Game {
     private boolean endOfGame(int player1StoneCount, int player2StoneCount) {
         return player1StoneCount + player2StoneCount == stones.size();
     }
+
     public void save() {
         try {
             Writer writer = new FileWriter("save.txt");
-            writer.write(rows);
-        } catch (Exception e){
+            writer.write(rows + " ");
+            writer.write(cols + "\n");
+            writer.write(turn + "\n");
+            writer.write(player1Stones + " ");
+            writer.write(player2Stones + "\n");
+            writer.write(stones.size() + "\n");
+            for (Node node : stones) {
+                writer.write(node.getX() + " ");
+                writer.write(node.getY() + " ");
+                writer.write(node.getColor() + "\n");
+            }
+            for (Stick stick : this.canvas.getSticks()) {
+                writer.write(stick.getFirst().getX() + " ");
+                writer.write(stick.getFirst().getY() + " ");
+                writer.write(stick.getSecond().getX() + " ");
+                writer.write(stick.getSecond().getY() + "\n");
+            }
+            writer.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public void load() {
+        try {
+            Scanner scanner = new Scanner(new File("save.txt"));
+            String[] data;
+            String line;
+            line = scanner.nextLine();
+            data = line.split(" ");
+            this.canvas.setRows(Integer.parseInt(data[0]));
+            this.canvas.setCols(Integer.parseInt(data[1]));
+            line = scanner.nextLine();
+            turn = Integer.parseInt(line);
+            line = scanner.nextLine();
+            data = line.split(" ");
+            player1Stones = Integer.parseInt(data[0]);
+            player2Stones = Integer.parseInt(data[1]);
+            line = scanner.nextLine();
+            int size = Integer.parseInt(line);
+
+            //stones
+            stones.clear();
+            for (int i = 0; i < size; i++) {
+                line = scanner.nextLine();
+                data = line.split(" ");
+                stones.add(new Node(Integer.parseInt(data[0]), Integer.parseInt(data[1])));
+                stones.get(i).setColor(Integer.parseInt(data[2]));
+            }
+
+            //sticks
+            canvas.getSticks().clear();
+            while (scanner.hasNextLine()) {
+                line = scanner.nextLine();
+                data = line.split(" ");
+                canvas.getSticks().add(new Stick(new Node(Integer.parseInt(data[0]), Integer.parseInt(data[1])),
+                        new Node(Integer.parseInt(data[2]), Integer.parseInt(data[3]))));
+            }
+            scanner.close();
+            mainFrame.repaint();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

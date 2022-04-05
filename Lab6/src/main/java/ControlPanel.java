@@ -35,11 +35,11 @@ public class ControlPanel extends JPanel {
     }
 
     private void save(ActionEvent e){
-
+        this.frame.game.save();
     }
 
     private void load(ActionEvent e){
-        
+        this.frame.game.load();
     }
 
     private void exitGame(ActionEvent e) {

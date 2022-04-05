@@ -23,7 +23,6 @@ public class DrawingPanel extends JPanel {
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
         init(frame.configPanel.getRows(), frame.configPanel.getCols());
-
     }
 
     final void init(int rows, int cols) {
@@ -44,11 +43,13 @@ public class DrawingPanel extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, canvasWidth, canvasHeight);
         paintGrid(g);
-
-        generateSticks();
+        if (sticks.isEmpty()) {
+            generateSticks();
+        }
         paintSticks(g);
-
-        generateStones();
+        if (stones.isEmpty()) {
+            generateStones();
+        }
         paintStones(g);
     }
 
@@ -89,7 +90,7 @@ public class DrawingPanel extends JPanel {
         Random random = new Random();
         //maxim number of intersection
         maxim = random.nextInt(rows * cols + 1) + 3;
-        System.out.println("Maxim:" + maxim);
+        //System.out.println("Maxim:" + maxim);
 
         //first node
         int iRandom = random.nextInt(rows);
@@ -177,15 +178,15 @@ public class DrawingPanel extends JPanel {
                 if (iOfCurrentNode < rows - 1) {
                     if (!(new Stick(nodes.get(iOfCurrentNode).get(jOfCurrentNode), nodes.get(iOfCurrentNode + 1).get(jOfCurrentNode)).compareStick(sticks))) {
                         sticks.add(new Stick(nodes.get(iOfCurrentNode).get(jOfCurrentNode), nodes.get(iOfCurrentNode + 1).get(jOfCurrentNode)));
-                        nodeList.add(nodes.get(iOfCurrentNode+1).get(jOfCurrentNode));
+                        nodeList.add(nodes.get(iOfCurrentNode + 1).get(jOfCurrentNode));
                         temp++;
                     }
 
                 }
             }
         }
-        System.out.println("Numarul de bete:" + sticks.size());
-        System.out.println(sticks);
+        //System.out.println("Numarul de bete:" + sticks.size());
+        //System.out.println(sticks);
 
     }
 
@@ -217,13 +218,34 @@ public class DrawingPanel extends JPanel {
         g.setColor(Color.BLACK);
         g.setStroke(new BasicStroke(1, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         for (Node stone : stones) {
+            g.setColor(Color.BLACK);
             g.drawOval(stone.getX() - stoneSize / 2, stone.getY() - stoneSize / 2, stoneSize, stoneSize);
+            if (stone.getColor() == 0) {
+                g.setColor(Color.BLUE);
+                g.fillOval(stone.getX() - stoneSize / 2, stone.getY() - stoneSize / 2, stoneSize, stoneSize);
+            } else if (stone.getColor() == 1) {
+                g.setColor(Color.red);
+                g.fillOval(stone.getX() - stoneSize / 2, stone.getY() - stoneSize / 2, stoneSize, stoneSize);
+            }
         }
     }
 
     public List<Node> getStones() {
         return stones;
     }
+
+    public List<Stick> getSticks() {
+        return sticks;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public void setCols(int cols) {
+        this.cols = cols;
+    }
+
 }
 
 

@@ -26,10 +26,12 @@ public class Stick {
         }
         return false;
     }
-
     @Override
     public String toString() {
-        return "First:" + this.first + " " + "Second:" + this.second;
+        return "Stick{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
     }
 
 }
