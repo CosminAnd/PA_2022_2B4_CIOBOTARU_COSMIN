@@ -21,6 +21,9 @@ public class Tile {
     //toString
     @Override
     public String toString() {
-        return "Letter: " + letter + " Points: " + points;
+        return "Tile{" +
+                "letter=" + letter +
+                ", points=" + points +
+                '}';
     }
 }
