@@ -22,7 +22,8 @@ public class Game {
             Thread thread = new Thread(player);
             thread.start();
         }
-        while (!bag.isEmpty()){}
+        while (!bag.isEmpty()){
+        }
 
 
         for(Player it : players){
