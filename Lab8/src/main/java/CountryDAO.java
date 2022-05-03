@@ -1,9 +1,7 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
-public class CountryDAO {
+public class CountryDAO implements DAO {
+    @Override
     public void create(String name, int id) throws SQLException {
         Connection connection = Database.getConnection();
         try (PreparedStatement pstmt = connection.prepareStatement("insert into countries (id, name) values (?,?)")) {
@@ -11,6 +9,36 @@ public class CountryDAO {
             pstmt.setString(2, name);
             pstmt.executeUpdate();
             connection.commit();
+        }
+    }
+
+    @Override
+    public void findAll() throws SQLException {
+        Connection con = Database.getConnection();
+        PreparedStatement pstmt = con.prepareStatement("select name from countries ");
+        ResultSet res = pstmt.executeQuery();
+        while (res.next()) {
+            System.out.println(res.getString(1));
+        }
+
+    }
+
+    @Override
+    public Integer findByName(String name) throws SQLException {
+        Connection con = Database.getConnection();
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(
+                     "select id from countries where name='" + name + "'")) {
+            return rs.next() ? rs.getInt(1) : null;
+        }
+    }
+
+    @Override
+    public String findById(int id) throws SQLException {
+        Connection con = Database.getConnection();
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("select name from countries where name='" + id + "'")) {
+            return rs.next() ? rs.getString(1) : null;
         }
     }
 

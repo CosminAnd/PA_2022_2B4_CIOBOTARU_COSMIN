@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main {
@@ -21,12 +22,23 @@ public class Main {
             Database.getConnection().commit();
             */
 
-            countries.create("Norway", europeId);
+            //countries.create("Norway", europeId);
             Database.getConnection().commit();
 
 
             //print all the countries in Europe
-            countries.printCountries(europeId);
+            //countries.printCountries(europeId);
+            //continents.create("America", 126);
+
+            var cities = new CityDAO();
+
+            /*try{
+                cities.importCities();
+            } catch (IOException e){
+                e.printStackTrace();
+            }*/
+            //cities.findAll();
+            cities.distanceToCities("Bucharest", "Madrid");
 
             Database.closeConnection();
         } catch (SQLException e) {

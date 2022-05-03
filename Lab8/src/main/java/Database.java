@@ -19,15 +19,15 @@ public class Database {
     private static void createConnection() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
-            connection =  DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
             connection.setAutoCommit(false);
         } catch (SQLException e) {
             System.err.println(e);
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
+
     public static void rollback() throws SQLException {
         connection.rollback();
     }
@@ -36,7 +36,7 @@ public class Database {
         try {
             if (connection != null)
                 connection.close();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
