@@ -5,6 +5,16 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "COUNTRIES", schema = "STUDENT")
+@NamedQueries({
+        @NamedQuery(name = "Country.findByName",
+                query = "SELECT e FROM CountriesEntity e WHERE e.name = :name"),
+        @NamedQuery(name = "Country.findById",
+                query = "select  e from CountriesEntity e where e.id = :id"),
+        @NamedQuery(name = "Country.findByName ",
+                query = "select e from CountriesEntity e where e.name = :name")
+})
+
+
 public class CountriesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -20,9 +30,6 @@ public class CountriesEntity implements Serializable {
     @Basic
     @Column(name = "CONTINENT")
     private String continent;
-    @Basic
-    @Column(name = "CONTINENTID")
-    private Long continentid;
 
     public long getId() {
         return id;
@@ -80,11 +87,13 @@ public class CountriesEntity implements Serializable {
         return result;
     }
 
-    public Long getContinentid() {
-        return continentid;
-    }
-
-    public void setContinentid(Long continentid) {
-        this.continentid = continentid;
+    @Override
+    public String toString() {
+        return "CountriesEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", continent='" + continent + '\'' +
+                '}';
     }
 }

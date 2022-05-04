@@ -18,6 +18,18 @@ public class CitiesRepository {
                 .getResultList();
     }
 
+    public List<CitiesEntity> findById(Integer id){
+        return manager.createNamedQuery("City.findById")
+                .setParameter("id",id)
+                .getResultList();
+    }
+
+    public List<CitiesEntity> findByName(String name){
+        return manager.createNamedQuery("City.findByName ")
+                .setParameter("name",name)
+                .getResultList();
+    }
+
 
 
 }

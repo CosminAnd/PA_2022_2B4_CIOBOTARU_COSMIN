@@ -9,8 +9,12 @@ import java.math.BigInteger;
 
 @NamedQueries({
         @NamedQuery(name = "City.findByCountry",
-                query = "select e from CitiesEntity e where e.country = :country")
-        })
+                query = "select e from CitiesEntity e where e.country = :country"),
+        @NamedQuery(name = "City.findById",
+                query = "select  e from CitiesEntity e where e.id = :id"),
+        @NamedQuery(name = "City.findByName ",
+                query = "select e from CitiesEntity e where e.name = :name")
+})
 
 public class CitiesEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)

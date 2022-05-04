@@ -5,7 +5,14 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "CONTINENTS", schema = "STUDENT")
-
+@NamedQueries({
+        @NamedQuery(name = "Continent.findAll",
+                query = "select e from ContinentsEntity e order by e.name"),
+        @NamedQuery(name = "Continent.findById",
+                query = "select  e from ContinentsEntity e where e.id = :id"),
+        @NamedQuery(name = "Continent.findByName ",
+                query = "select e from ContinentsEntity e where e.name = :name")
+})
 
 public class ContinentsEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +58,13 @@ public class ContinentsEntity implements Serializable {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ContinentsEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
