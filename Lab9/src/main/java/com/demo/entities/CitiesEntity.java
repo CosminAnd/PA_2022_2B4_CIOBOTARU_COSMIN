@@ -117,4 +117,16 @@ public class CitiesEntity implements Serializable {
         result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "CitiesEntity{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", name='" + name + '\'' +
+                ", capital=" + capital +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

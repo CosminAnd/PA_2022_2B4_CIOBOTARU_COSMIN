@@ -14,6 +14,6 @@ public class Main {
         em.getTransaction().begin();
 
         CitiesRepository citiesRepository = new CitiesRepository(em);
-        System.out.println(citiesRepository.findByCountry("Spain"));
+        System.out.println(citiesRepository.findByCountry("Spain").toString());
     }
 }
