@@ -2,6 +2,7 @@ package com.demo.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "CONTINENTS", schema = "STUDENT")
@@ -23,6 +24,9 @@ public class ContinentsEntity implements Serializable {
     @Basic
     @Column(name = "NAME")
     private String name;
+
+    @OneToMany(mappedBy = "continents")
+    private Set<CountriesEntity> countriesEntitySet;
 
     public long getId() {
         return id;

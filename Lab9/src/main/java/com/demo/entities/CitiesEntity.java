@@ -38,6 +38,10 @@ public class CitiesEntity implements Serializable {
     @Column(name = "LONGITUDE")
     private Double longitude;
 
+    @ManyToOne
+    @JoinColumn(name="COUNTRY_ID", nullable=false)
+    private CountriesEntity countries;
+
     public BigInteger getId() {
         return id;
     }

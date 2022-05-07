@@ -1,6 +1,5 @@
 package com.demo.repositories;
 
-import com.demo.entities.ContinentsEntity;
 import com.demo.entities.CountriesEntity;
 
 import javax.persistence.EntityManager;

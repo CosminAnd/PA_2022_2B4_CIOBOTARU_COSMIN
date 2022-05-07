@@ -24,7 +24,7 @@ public class Main {
         System.out.println(citiesRepository.findById(202).toString());
         System.out.println();
         System.out.println("Cautare dupa nume:");
-        System.out.println(citiesRepository.findByName("Iasi").toString());
+        System.out.println(citiesRepository.findByName("Bucharest").toString());
         System.out.println();
 
         System.out.println("-----Test pentru continente-----");
