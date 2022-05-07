@@ -10,20 +10,21 @@ public class Main {
 
             var countries = new CountryDAO();
             int europeId = continents.findByName("Europe");
-           /* countries.create("Romania", europeId);
-            countries.create("Ukraine", europeId);
-            countries.create("Italy", europeId);
-            countries.create("France", europeId);
-            countries.create("Germany", europeId);
-            countries.create("Portugal", europeId);
-            countries.create("Greece", europeId);
-            countries.create("Spain", europeId);
-            countries.create("Portugal", europeId);
+            /*countries.create("Romania", 1);
+            countries.create("Ukraine", 2);
+            countries.create("Italy", 3);
+            countries.create("France", 4);
+            countries.create("Germany", 5);
+            countries.create("Portugal", 6);
+            countries.create("Greece", 7);
+            countries.create("Spain", 8);
+            countries.create("Portugal", 9);
             Database.getConnection().commit();
-            */
 
-            //countries.create("Norway", europeId);
+
+            countries.create("Norway", 10);
             Database.getConnection().commit();
+             */
 
 
             //print all the countries in Europe
@@ -31,6 +32,9 @@ public class Main {
             //continents.create("America", 126);
 
             var cities = new CityDAO();
+            //countries.add("Moldova", 11, "1222", "Europe", europeId);
+
+            cities.add("Iasi","Romania",0,"47.151726", "27.587914",1);
 
             /*try{
                 cities.importCities();

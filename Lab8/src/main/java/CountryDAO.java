@@ -50,4 +50,19 @@ public class CountryDAO implements DAO {
             System.out.println(rs.getString(1));
         }
     }
+
+    public void add(String name, int id, String code, String continent, int continentId) throws SQLException {
+        Connection connection = Database.getConnection();
+        try (PreparedStatement pstmt = connection.prepareStatement("insert into countries (id, name, code, continent, continent_id) values (?,?,?,?,?)")) {
+            pstmt.setInt(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, code);
+            pstmt.setString(4,continent);
+            pstmt.setInt(5, continentId);
+            pstmt.executeUpdate();
+            connection.commit();
+        }
+    }
+
+
 }

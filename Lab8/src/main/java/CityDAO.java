@@ -43,7 +43,7 @@ public class CityDAO implements DAO {
         }
     }
 
-    public void add(String name, String country, int capital, String latitude, String longitude) throws SQLException {
+    public void add(String name, String country, int capital, String latitude, String longitude, int countryId) throws SQLException {
         int id;
         Connection con = Database.getConnection();
         try (Statement stmt = con.createStatement();
@@ -53,7 +53,7 @@ public class CityDAO implements DAO {
         }
 
         try (PreparedStatement stmt = con.prepareStatement(
-                "INSERT INTO cities (id, name, country, capital, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)")) {
+                "INSERT INTO cities (id, name, country, capital, latitude, longitude,country_id) VALUES (?, ?, ?, ?, ?, ?,?)")) {
             System.out.println(id);
             stmt.setInt(1, id);
             stmt.setString(2, name);
@@ -61,6 +61,7 @@ public class CityDAO implements DAO {
             stmt.setInt(4, capital);
             stmt.setDouble(5, Double.parseDouble(latitude));
             stmt.setDouble(6, Double.parseDouble(longitude));
+            stmt.setInt(7, countryId);
             stmt.executeUpdate();
             con.commit();
         }
