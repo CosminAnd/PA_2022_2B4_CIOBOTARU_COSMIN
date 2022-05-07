@@ -4,8 +4,34 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CityDAO implements DAO {
+
+    private Integer id;
+    private String name;
+    private String country;
+    private Integer capital;
+    private Double latitude;
+    private Double longitude;
+
+    public String getName() {
+
+        return name;
+    }
+
+    public Double getLatitude() {
+
+        return latitude;
+    }
+
+    public Double getLongitude() {
+
+        return longitude;
+    }
+
+
     @Override
     public void create(String name, int id) throws SQLException {
         Connection connection = Database.getConnection();
@@ -77,6 +103,7 @@ public class CityDAO implements DAO {
         }
         con.commit();
     }
+
     @Override
     public Integer findByName(String name) throws SQLException {
         Connection con = Database.getConnection();
@@ -86,6 +113,7 @@ public class CityDAO implements DAO {
             return rs.next() ? rs.getInt(1) : null;
         }
     }
+
     @Override
     public String findById(int id) throws SQLException {
         Connection con = Database.getConnection();
@@ -94,6 +122,7 @@ public class CityDAO implements DAO {
             return rs.next() ? rs.getString(1) : null;
         }
     }
+
     @Override
     public void findAll() throws SQLException {
         Connection con = Database.getConnection();
@@ -103,6 +132,22 @@ public class CityDAO implements DAO {
             System.out.println(res.getString(1));
         }
 
+    }
+
+    public CityDAO findCity(String name) throws SQLException {
+        CityDAO cityDAO = new CityDAO();
+        Connection con = Database.getConnection();
+        PreparedStatement pstmt = con.prepareStatement("select * from CITIES where name='" + name + "'");
+        ResultSet res = pstmt.executeQuery();
+        while (res.next()) {
+            cityDAO.id = res.getInt(1);
+            cityDAO.name = res.getString(2);
+            cityDAO.country = res.getString(3);
+            cityDAO.capital = res.getInt(4);
+            cityDAO.latitude = res.getDouble(5);
+            cityDAO.longitude = res.getDouble(6);
+        }
+        return cityDAO;
     }
 
     public void distanceToCities(String firstCity, String secondCity) throws SQLException {
@@ -138,6 +183,7 @@ public class CityDAO implements DAO {
         double a = Math.pow(Math.sin(difflat / 2), 2) + Math.cos(firstLatitude) * Math.cos(secondLatitude) * Math.pow(Math.sin(difflon / 2), 2);
         double c = 2 * Math.asin(Math.sqrt(a));
         double r = 6378.8;
-         System.out.println(c * r);
+        System.out.println(c * r);
     }
+
 }

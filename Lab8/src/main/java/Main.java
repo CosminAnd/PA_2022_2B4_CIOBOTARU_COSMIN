@@ -40,10 +40,15 @@ public class Main {
             //cities.findAll();
             cities.distanceToCities("Bucharest", "Madrid");
 
+
+
             Database.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
             Database.rollback();
         }
+
+        MainFrame mainFrame = new MainFrame("Rome" );
+
     }
 }
