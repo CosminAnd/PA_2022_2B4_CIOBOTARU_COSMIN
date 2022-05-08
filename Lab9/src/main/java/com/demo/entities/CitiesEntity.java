@@ -39,7 +39,7 @@ public class CitiesEntity implements Serializable {
     private Double longitude;
 
     @ManyToOne
-    @JoinColumn(name="COUNTRY_ID", nullable=false)
+    @JoinColumn(name = "COUNTRY_ID", nullable = false)
     private CountriesEntity countries;
 
     public BigInteger getId() {

@@ -54,6 +54,12 @@
             <systemPath>c:/Users/ciobo/Desktop/facultate/an_2/sem_2/PA/ojdbc11.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>org.choco-solver</groupId>
+            <artifactId>choco-solver</artifactId>
+            <version>4.10.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>

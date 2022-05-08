@@ -33,7 +33,7 @@ public class CountriesEntity implements Serializable {
     private String continent;
 
     @ManyToOne
-    @JoinColumn(name="CONTINENT_ID", nullable=false)
+    @JoinColumn(name = "CONTINENT_ID", nullable = false)
     private ContinentsEntity continents;
 
     @OneToMany(mappedBy = "countries")

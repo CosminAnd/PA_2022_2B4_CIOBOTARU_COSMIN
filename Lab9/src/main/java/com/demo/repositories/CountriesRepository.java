@@ -5,7 +5,7 @@ import com.demo.entities.CountriesEntity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class CountriesRepository {
+public class CountriesRepository extends DataRepository <CountriesEntity, Integer> {
     private EntityManager manager;
 
     public CountriesRepository(EntityManager em) {
