@@ -5,22 +5,29 @@ import com.demo.entities.CountriesEntity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class CountriesRepository extends DataRepository <CountriesEntity, Integer> {
+public class CountriesRepository<T, ID> implements AbstractRepository {
     private EntityManager manager;
 
     public CountriesRepository(EntityManager em) {
         this.manager = em;
     }
 
-    public List<CountriesEntity> findByName(String name){
+    @Override
+    public List<CountriesEntity> findByName(String name) {
         return manager.createNamedQuery("Country.findByName")
                 .setParameter("name", name)
                 .getResultList();
     }
 
-    public List<CountriesEntity> findById(Integer id){
+    @Override
+    public List<CountriesEntity> findById(Object o) {
         return manager.createNamedQuery("Country.findById")
-                .setParameter("id",id)
+                .setParameter("id", o)
                 .getResultList();
+    }
+
+    @Override
+    public void save(Object o) {
+        manager.persist(o);
     }
 }

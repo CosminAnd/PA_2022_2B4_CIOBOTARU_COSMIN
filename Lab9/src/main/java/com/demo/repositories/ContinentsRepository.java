@@ -5,7 +5,7 @@ import com.demo.entities.ContinentsEntity;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class ContinentsRepository extends DataRepository <ContinentsEntity, Integer> {
+public class ContinentsRepository <T, ID> implements AbstractRepository {
     private EntityManager manager;
 
     public ContinentsRepository( EntityManager manager1){
@@ -18,9 +18,9 @@ public class ContinentsRepository extends DataRepository <ContinentsEntity, Inte
     }
 
     @Override
-    public List<ContinentsEntity> findById(Integer id){
+    public List<ContinentsEntity> findById(Object o){
         return manager.createNamedQuery("Continent.findById")
-                .setParameter("id",id)
+                .setParameter("id",o)
                 .getResultList();
     }
     @Override
@@ -28,5 +28,10 @@ public class ContinentsRepository extends DataRepository <ContinentsEntity, Inte
         return manager.createNamedQuery("Continent.findByName ")
                 .setParameter("name",name)
                 .getResultList();
+    }
+
+    @Override
+    public void save(Object o){
+        manager.persist(o);
     }
 }

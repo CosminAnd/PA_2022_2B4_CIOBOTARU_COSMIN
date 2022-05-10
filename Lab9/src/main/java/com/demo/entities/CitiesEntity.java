@@ -13,7 +13,9 @@ import java.math.BigInteger;
         @NamedQuery(name = "City.findById",
                 query = "select  e from CitiesEntity e where e.id = :id"),
         @NamedQuery(name = "City.findByName ",
-                query = "select e from CitiesEntity e where e.name = :name")
+                query = "select e from CitiesEntity e where e.name = :name"),
+        @NamedQuery(name = "City.findAll",
+                query = "select e from CitiesEntity e order by e.name")
 })
 
 public class CitiesEntity implements Serializable {
@@ -37,13 +39,38 @@ public class CitiesEntity implements Serializable {
     @Basic
     @Column(name = "LONGITUDE")
     private Double longitude;
+    @Basic
+    @Column(name = "POPULATION")
+    private int population;
 
     @ManyToOne
     @JoinColumn(name = "COUNTRY_ID", nullable = false)
     private CountriesEntity countries;
 
+    public CitiesEntity(){
+    }
+
+    public CitiesEntity(BigInteger id, String country, String name, BigInteger capital,
+                        Double latitude, Double longitude, int population) {
+        this.id = id;
+        this.country = country;
+        this.name = name;
+        this.capital = capital;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.population = population;
+    }
+
     public BigInteger getId() {
         return id;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
     }
 
     public void setId(BigInteger id) {
@@ -98,6 +125,12 @@ public class CitiesEntity implements Serializable {
         this.longitude = longitude;
     }
 
+    public void assignToCountry(CountriesEntity country) {
+        country.getCitiesEntitySet().add(this);
+        this.countries = country;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -135,6 +168,10 @@ public class CitiesEntity implements Serializable {
                 ", capital=" + capital +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", population=" + population +
+                ", country=" + countries +
                 '}';
     }
+
+
 }

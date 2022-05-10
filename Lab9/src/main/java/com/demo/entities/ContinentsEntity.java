@@ -2,6 +2,7 @@ package com.demo.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,7 +27,28 @@ public class ContinentsEntity implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "continents")
-    private Set<CountriesEntity> countriesEntitySet;
+    private Set<CountriesEntity> countriesEntitySet = new HashSet<>(0);
+
+    public ContinentsEntity() {
+    }
+
+    public ContinentsEntity(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Set<CountriesEntity> getCountriesEntitySet() {
+        return countriesEntitySet;
+    }
+
+    public void setCountriesEntitySet(Set<CountriesEntity> countriesEntitySet) {
+        this.countriesEntitySet = countriesEntitySet;
+    }
+
+    public void addCountry(CountriesEntity countriesEntity) {
+        countriesEntitySet.add(countriesEntity);
+    }
+
 
     public long getId() {
         return id;
